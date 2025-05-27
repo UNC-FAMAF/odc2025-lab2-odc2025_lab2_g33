@@ -17,6 +17,7 @@ main:
 
 	bl Fondo
 	bl Tierra
+	bl Numeros
 
 InfLoop:
 	b InfLoop
