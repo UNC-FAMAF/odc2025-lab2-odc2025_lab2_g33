@@ -1,9 +1,9 @@
 .ifndef formas_s
-.equ formas_s, 0
+	.equ formas_s, 0
 
-.equ SCREEN_WIDTH, 640
-.equ SCREEN_HEIGHT, 480
-.equ BITS_PER_PIXEL, 32
+	.equ SCREEN_WIDTH, 640
+	.equ SCREEN_HEIGHT, 480
+	.equ BITS_PER_PIXEL, 32
 
 Pantalla:
 		//Que hace MMAD?
@@ -12,15 +12,6 @@ Pantalla:
 	add x0, x20, x0, lsl #2 //x0 = posición base de la pantallla + [(posición y * 640) + posición x]
 	br lr
 
-/*
-    Dibuja un rectángulo en la pantalla.
-    Parámetros:
-        x0 = posición de la esquina superior izquierda en x
-		x1 = posición de la esquina superior izquierda en y
-		x2 = ancho del rectángulo (→)
-        x3 = largo del rectángulo (↓)
-        x4 = color del rectángulo
-*/
 Rectangulo:
 		sub sp, sp, #48 //pido memoria en el stack para la dirección de retorno y los parámetros
 		stur lr, [sp, #40] //guardo la dirección de retorno en el stack
@@ -53,7 +44,6 @@ Rectangulo:
 		ldur lr, [sp, #40] //recupero la dirección de retorno
 		add sp, sp, #48 //devuelvo la memoria pedida
 		br lr
-
 
 /*
     Elegir valores para los REGISTROS para dibujar un cuadrado.
@@ -154,26 +144,24 @@ Circulo:
         cbz x7, circulo_mov_y
         b loop_circulo1
 
-
 //Figuras
-Fondo:
-mov x0, 0
-mov x1, 0
-mov x2, 640
-mov x3, 0x000033		
-bl Cuadrado
-
 Tierra:
-mov x0,320
-mov x1, 240
-mov x2, 103
-mov x3, 0x00FFE4
-bl Circulo
+	mov x0,320
+	mov x1, 240
+	mov x2, 103
+	mov x3, 0x00FFE4
+	bl Circulo
+	mov x0,320
+	mov x1, 240
+	mov x2, 100
+	mov x3, 0x0000CC
+	bl Circulo
 
-mov x0,320
-mov x1, 240
-mov x2, 100
-mov x3, 0x0000CC
-bl Circulo
+Fondo:
+	mov x0, 0
+	mov x1, 0
+	mov x2, SCREEN_WIDTH
+	mov x3, 0xCCCC
+	bl Cuadrado
 
 .endif
