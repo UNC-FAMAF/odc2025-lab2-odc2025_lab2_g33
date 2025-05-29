@@ -12,6 +12,16 @@ Pantalla:
 	add x0, x20, x0, lsl #2 //x0 = posición base de la pantallla + [(posición y * 640) + posición x]
 	br lr
 
+/*
+    Dibuja un rectángulo en la pantalla.
+    Parámetros:
+        x0 = posición de la esquina superior izquierda en x
+		x1 = posición de la esquina superior izquierda en y
+		x2 = ancho del rectángulo (→)
+        x3 = largo del rectángulo (↓)
+        x4 = color del rectángulo
+*/
+
 Rectangulo:
 		sub sp, sp, #48 //pido memoria en el stack para la dirección de retorno y los parámetros
 		stur lr, [sp, #40] //guardo la dirección de retorno en el stack
@@ -144,19 +154,8 @@ Circulo:
         cbz x7, circulo_mov_y
         b loop_circulo1
 
-//Figuras
-Tierra:
-	mov x0,320
-	mov x1, 240
-	mov x2, 103
-	mov x3, 0x00FFE4
-	bl Circulo
-	mov x0,320
-	mov x1, 240
-	mov x2, 100
-	mov x3, 0x0000CC
-	bl Circulo
 
+//Figuras
 Fondo:
 	mov x0, 0
 	mov x1, 0
@@ -164,4 +163,362 @@ Fondo:
 	mov x3, 0xCCCC
 	bl Cuadrado
 
+//Pajaors
+	mov x0, 430
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 427
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 420
+	mov x1, 100
+	mov x2, 10
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 410
+	mov x1, 110
+	mov x2, 10
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 400
+	mov x1, 100
+	mov x2, 10
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 395
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 390
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 380
+	mov x1, 120
+	mov x2, 5
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 370
+	mov x1, 120
+	mov x2, 10
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 360
+	mov x1, 130
+	mov x2, 10
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 350
+	mov x1, 120
+	mov x2, 10
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 345
+	mov x1, 120
+	mov x2, 5
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 340
+	mov x1, 120
+	mov x2, 5
+	mov x3, 0x000000
+	bl Cuadrado
+
+
+
+
+	mov x0, 340
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 330
+	mov x1, 100
+	mov x2, 10
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 320
+	mov x1, 110
+	mov x2, 10
+	mov x3, 0x000000
+	bl Cuadrado
+
+
+	mov x0, 310
+	mov x1, 100
+	mov x2, 10
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 305
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	bl Cuadrado
+
+	mov x0, 300
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	bl Cuadrado
+
+
+//montana
+	mov x0, 110
+	mov x1, 120
+	mov x2, 40
+	mov x3, 100
+	mov x4, 0xFFFFFF
+	bl Rectangulo
+
+	mov x0, 80
+	mov x1, 150
+	mov x2, 100
+	mov x3, 100
+	movz x4, 0x001C83AF & 0xFFFF, lsl 0
+	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo
+
+	mov x0, 30
+	mov x1, 200
+	mov x2, 200
+	mov x3, 100
+	movz x4, 0x001C83AF & 0xFFFF, lsl 0
+	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo
+
+	mov x0, 0
+	mov x1, 300
+	mov x2, 300
+	mov x3, 100
+	movz x4, 0x001C83AF & 0xFFFF, lsl 0
+	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo
+
+//Figura: piso
+	mov x0, 0
+	mov x1, 400
+	mov x2, 640
+	mov x3, 80
+	movz x4, 0x0007DE00 & 0xFFFF, lsl 0
+	movk x4, (0x0007DE00 >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo
+
+	mov x0, 0
+	mov x1, 430
+	mov x2, 640
+	mov x3, 40
+	movz x4, 0x00AF8D1C & 0xFFFF, lsl 0
+	movk x4, (0x00AF8D1C >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo
+
+	mov x0, 0
+	mov x1, 450
+	mov x2, 640
+	mov x3, 40
+	movz x4, 0x00AF6F1C & 0xFFFF, lsl 0
+	movk x4, (0x00AF6F1C >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo
+
+
+//Figura: Sol
+//rayo medio abajo
+	mov x0, 565
+	mov x1, 155
+	mov x2, 10
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 560
+	mov x1, 155
+	mov x2, 10
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 540
+	mov x1, 140
+	mov x2, 20
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 540
+	mov x1, 145
+	mov x2, 20
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+//rayo medio arriba
+	mov x0, 550
+	mov x1, 10
+	mov x2, 10
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 560
+	mov x1, 10
+	mov x2, 10
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 540
+	mov x1, 20
+	mov x2, 15
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 540
+	mov x1, 10
+	mov x2, 15
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+//rayo abajo derecha
+	mov x0, 615
+	mov x1, 105
+	mov x2, 5
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 605
+	mov x1, 105
+	mov x2, 10
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 600
+	mov x1, 115
+	mov x2, 15
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 580
+	mov x1, 115
+	mov x2, 15
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 590
+	mov x1, 115
+	mov x2, 15
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+//rayo abajo izquierda
+	mov x0, 485
+	mov x1, 125
+	mov x2, 10
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 485
+	mov x1, 110
+	mov x2, 15
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+	mov x0, 495
+	mov x1, 110
+	mov x2, 15
+	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16 
+	bl Cuadrado
+
+//rayo arriba derecha
+	mov x0, 485
+	mov x1, 27
+	mov x2, 5
+	mov x3, 15
+	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
+	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo
+
+	mov x0, 485
+	mov x1, 38
+	mov x2, 22
+	mov x3, 7
+	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
+	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo 
+
+	mov x0, 498
+	mov x1, 40
+	mov x2, 10
+	mov x3, 30
+	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
+	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo
+
+//rayo arriba izquierda
+	mov x0, 605
+	mov x1, 30
+	mov x2, 5
+	mov x3, 10
+	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
+	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo 
+
+	mov x0, 600
+	mov x1, 40
+	mov x2, 10
+	mov x3, 7
+	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
+	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo 
+
+	mov x0, 590
+	mov x1, 40
+	mov x2, 10
+	mov x3, 20
+	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
+	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
+	bl Rectangulo 
+	
+	mov x0, 550
+	mov x1, 85
+	mov x2, 55
+	movz x3, 0x00FF9A00 & 0xFFFF, lsl 0
+ 	movk x3, (0x00FF9A00 >> 16) & 0xFFFF, lsl 16 
+	bl Circulo
+
+	mov x0, 550
+	mov x1, 85
+	mov x2, 50
+	mov x3, 0x00FFFF00
+	bl Circulo
+	
 .endif
