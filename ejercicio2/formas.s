@@ -6,20 +6,18 @@
 .equ BITS_PER_PIXEL, 32
 
 Pantalla:
-	// Que hace MMAD?
-	// Multiplica y suma a la vez
 	madd x0, x1, x21, x0     // x0 = (x1 * x2) + x0
 	add  x0, x20, x0, lsl #2 // x0 = posición base de la pantallla + [(posición y * 640) + posición x]
 	br   lr
 
 /*
-    Dibuja un rectángulo en la pantalla.
-    Parámetros:
-        x0 = posición de la esquina superior izquierda en x
+Dibuja un rectángulo en la pantalla.
+Parámetros:
+	x0 = posición de la esquina superior izquierda en x
 	x1 = posición de la esquina superior izquierda en y
 	x2 = ancho del rectángulo (→)
-        x3 = largo del rectángulo (↓)
-        x4 = color del rectángulo
+	x3 = largo del rectángulo (↓)
+	x4 = color del rectángulo
 */
 Rectangulo:
 	sub  sp, sp, #48   // pido memoria en el stack para la dirección de retorno y los parámetros
@@ -57,14 +55,14 @@ loop_rectangulo2:
 	br   lr
 
 /*
-    Dibuja un rectángulo en la pantalla.
-    Parámetros:
-        x0 = posición de la esquina superior izquierda en x
+Dibuja un rectángulo en la pantalla.
+Parámetros:
+	x0 = posición de la esquina superior izquierda en x
 	x1 = posición de la esquina superior izquierda en y
 	x2 = ancho del rectángulo (→)
-        x3 = largo del rectángulo (↓)
-        x4 = color del rectángulo
-		x5 = offset x
+	x3 = largo del rectángulo (↓)
+	x4 = color del rectángulo
+	x5 = offset x
 */
 RectanguloX:
 	sub  sp, sp, #56   // pido memoria en el stack para la dirección de retorno y los parámetros
@@ -104,13 +102,13 @@ loop_rectanguloX2:
 	ldur lr, [sp, #48] // recupero la dirección de retorno
 	add  sp, sp, #56   // devuelvo la memoria pedida
 	br   lr
-/*
-    Elegir valores para los REGISTROS para dibujar un cuadrado.
-        x0 = posición de la esquina superior izquierda en x (1 = 1pixel)
-		x1 = posición de la esquina superior izquierda en y
-        x2 = Largo de la cara del cuadrado 'tamano'
-        x3 = Color
 
+/*
+Elegir valores para los REGISTROS para dibujar un cuadrado.
+	x0 = posición de la esquina superior izquierda en x (1 = 1pixel)
+	x1 = posición de la esquina superior izquierda en y
+	x2 = Largo de la cara del cuadrado 'tamano'
+	x3 = Color
 */
 Cuadrado:
 	sub  sp, sp, #40   // pido memoria en el stack para la dirección de retorno y los parámetros
@@ -146,12 +144,12 @@ loop_cuadrado2:
 	br   lr
 
 /*
-    Elegir valores para los REGISTROS para dibujar un cuadrado que se mueve con un offset.
-        x0 = posición de la esquina superior izquierda en x (1 = 1pixel)
-		x1 = posición de la esquina superior izquierda en y
-        x2 = Largo de la cara del cuadrado 'tamano'
-        x3 = Color
-		x4 = Offset x
+Elegir valores para los REGISTROS para dibujar un cuadrado que se mueve con un offset.
+	x0 = posición de la esquina superior izquierda en x (1 = 1pixel)
+	x1 = posición de la esquina superior izquierda en y
+	x2 = Largo de la cara del cuadrado 'tamano'
+	x3 = Color
+	x4 = Offset x
 */
 CuadradoX:
 	sub  sp, sp, #48   // pido memoria en el stack para la dirección de retorno y los parámetros
@@ -191,12 +189,12 @@ loop_cuadradoX2:
 	br   lr
 
 /*
-    Dibuja un círculo en la pantalla.
-    Parámetros:
-        x0 = posicion del centro en x
-        x1 = posicion del centro en y
-        x2 = radio del circulo
-        x3 = color del circulo
+Dibuja un círculo en la pantalla.
+Parámetros:
+	x0 = posicion del centro en x
+	x1 = posicion del centro en y
+	x2 = radio del circulo
+	x3 = color del circulo
 */
 Circulo:
 	sub  sp, sp, #40   // pido memoria en el stack para la dirección de retorno y los parámetros
