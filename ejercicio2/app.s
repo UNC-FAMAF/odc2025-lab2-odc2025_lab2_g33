@@ -8,10 +8,13 @@ main:
 	mov x20, x0           // Guarda la dirección base-inicio del framebuffer en x20
 	mov x21, SCREEN_WIDTH
 	mov x22, SCREEN_HEIGH
-	mov x23, 0            // Offset para el fondo
+	mov x23, 0            // Offset para el fondo 1
+	mov x24, 0            // Offset para el fondo 2
+	mov x25, 0            // Offset para el fondo 3
 
 StartFrameLoop:
 
+	// distintas velocidades para obtener el efecto de paralaje
 	sub x23, x23, #1
 	sub x24, x24, #3
 	sub x25, x25, #30
