@@ -14,7 +14,7 @@ StartFrameLoop:
 
 	sub x23, x23, #1
 	sub x24, x24, #3
-	sub x25, x25, #10
+	sub x25, x25, #30
 
 	// frame1
 	bl Fondo

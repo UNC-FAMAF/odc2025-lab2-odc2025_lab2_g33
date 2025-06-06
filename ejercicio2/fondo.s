@@ -200,6 +200,42 @@ Fondo:
 	mov x3, 0x00FFFF00
 	bl  Circulo
 
+	// montana
+	mov x0, 110
+	mov x1, 120
+	mov x2, 40
+	mov x3, 100
+	mov x4, 0xFFFFFF
+	mov x5, x23
+	bl  RectanguloX
+
+	mov  x0, 80
+	mov  x1, 150
+	mov  x2, 100
+	mov  x3, 100
+	movz x4, 0x001C83AF & 0xFFFF, lsl 0
+	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
+	mov  x5, x23
+	bl   RectanguloX
+
+	mov  x0, 30
+	mov  x1, 200
+	mov  x2, 200
+	mov  x3, 100
+	movz x4, 0x001C83AF & 0xFFFF, lsl 0
+	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
+	mov  x5, x23
+	bl   RectanguloX
+
+	mov  x0, 0
+	mov  x1, 300
+	mov  x2, 300
+	mov  x3, 100
+	movz x4, 0x001C83AF & 0xFFFF, lsl 0
+	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
+	mov  x5, x23
+	bl   RectanguloX
+
 	// Pajaros
 	mov x0, 430
 	mov x1, 100
@@ -334,42 +370,6 @@ Fondo:
 	mov x4, x24
 	bl  CuadradoX
 
-	// montana
-	mov x0, 110
-	mov x1, 120
-	mov x2, 40
-	mov x3, 100
-	mov x4, 0xFFFFFF
-	mov x5, x23
-	bl  RectanguloX
-
-	mov  x0, 80
-	mov  x1, 150
-	mov  x2, 100
-	mov  x3, 100
-	movz x4, 0x001C83AF & 0xFFFF, lsl 0
-	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
-	mov  x5, x23
-	bl   RectanguloX
-
-	mov  x0, 30
-	mov  x1, 200
-	mov  x2, 200
-	mov  x3, 100
-	movz x4, 0x001C83AF & 0xFFFF, lsl 0
-	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
-	mov  x5, x23
-	bl   RectanguloX
-
-	mov  x0, 0
-	mov  x1, 300
-	mov  x2, 300
-	mov  x3, 100
-	movz x4, 0x001C83AF & 0xFFFF, lsl 0
-	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
-	mov  x5, x23
-	bl   RectanguloX
-
 	// Figura: piso
 	mov  x0, 0
 	mov  x1, 400
@@ -397,6 +397,149 @@ Fondo:
 	movk x4, (0x00AF6F1C >> 16) & 0xFFFF, lsl 16
 	mov  x5, x23
 	bl   RectanguloX
+
+	// Cactus
+	// Tronco
+	mov x0, 250
+	mov x1, 200
+	mov x2, 50
+	mov x3, 215
+	mov x4, 0x008000
+	mov x5, x25
+	bl  RectanguloX
+
+	// Brazo izquierdo
+	mov x0, 200
+	mov x1, 260
+	mov x2, 50
+	mov x3, 30
+	mov x4, 0x008000
+	mov x5, x25
+	bl  RectanguloX
+
+	mov x0, 200
+	mov x1, 210
+	mov x2, 30
+	mov x3, 50
+	mov x4, 0x008000
+	mov x5, x25
+	bl  RectanguloX
+
+	// Brazo derecho
+	mov x0, 300
+	mov x1, 290
+	mov x2, 50
+	mov x3, 30
+	mov x4, 0x008000
+	mov x5, x25
+	bl  RectanguloX
+
+	mov x0, 320
+	mov x1, 240
+	mov x2, 30
+	mov x3, 50
+	mov x4, 0x008000
+	mov x5, x25
+	bl  RectanguloX
+
+	// Espinas
+	mov x0, 320
+	mov x1, 240
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 310
+	mov x1, 290
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 340
+	mov x1, 270
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 300
+	mov x1, 260
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 220
+	mov x1, 240
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 210
+	mov x1, 290
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 240
+	mov x1, 270
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 200
+	mov x1, 260
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 260
+	mov x1, 220
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 290
+	mov x1, 230
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 270
+	mov x1, 280
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 290
+	mov x1, 290
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 260
+	mov x1, 320
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
+
+	mov x0, 290
+	mov x1, 340
+	mov x2, 5
+	mov x3, 0xFFFFFF
+	mov x4, x25
+	bl  CuadradoX
 
 	ldur x5, [sp, #0]  // recupero el valor de x5
 	ldur x4, [sp, #8]  // recupero el valor de x4
