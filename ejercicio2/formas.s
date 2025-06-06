@@ -57,6 +57,54 @@ loop_rectangulo2:
 	br   lr
 
 /*
+    Dibuja un rectángulo en la pantalla.
+    Parámetros:
+        x0 = posición de la esquina superior izquierda en x
+	x1 = posición de la esquina superior izquierda en y
+	x2 = ancho del rectángulo (→)
+        x3 = largo del rectángulo (↓)
+        x4 = color del rectángulo
+		x5 = offset x
+*/
+RectanguloX:
+	sub  sp, sp, #56   // pido memoria en el stack para la dirección de retorno y los parámetros
+	stur lr, [sp, #48] // guardo la dirección de retorno en el stack
+	stur x0, [sp, #40] // guardo el valor de x0 en el stack
+	stur x1, [sp, #32] // guardo el valor de x1 en el stack
+	stur x2, [sp, #24] // guardo el valor de x2 en el stack
+	stur x3, [sp, #16] // guardo el valor de x3 en el stack
+	stur x4, [sp, #8]  // guardo el valor de x4 en el stack
+	stur x5, [sp, #0]  // guardo el valor de x5 en el stack
+
+	add x0, x0, x5
+
+	mov x8, x0 // Copia la coordenada x de la esquina superior izquierda del rectángulo
+	mov x6, x3 // Indico el largo del rectángulo
+
+loop_rectanguloX1:
+	mov x7, x2   // Indico el ancho del rectángulo
+	mov x0, x8   // Devuelve el valor de x0
+	BL  Pantalla // calcula donde comenzar a colorear la primera línea
+
+loop_rectanguloX2:
+	stur w4, [x0]              // Colorea la pantalla
+	add  x0, x0, #4            // Me muevo al siguiente pixel hacia la derecha
+	sub  x7, x7, #1            // Decrementar contador del ancho
+	cbnz x7, loop_rectanguloX2 // Si no terminó la fila, salto
+	add  x1, x1, #1            // Me posiciono en la siguiente fila
+	sub  x6, x6, #1            // Decrementar contador del largo
+	cbnz x6, loop_rectanguloX1 // Si no es la última fila, salto
+
+	ldur x5, [sp, #0]  // recupero el valor de x5
+	ldur x4, [sp, #8]  // recupero el valor de x4
+	ldur x3, [sp, #16] // recupero el valor de x3
+	ldur x2, [sp, #24] // recupero el valor de x2
+	ldur x1, [sp, #32] // recupero el valor de x1
+	ldur x0, [sp, #40] // recupero el valor de x0
+	ldur lr, [sp, #48] // recupero la dirección de retorno
+	add  sp, sp, #56   // devuelvo la memoria pedida
+	br   lr
+/*
     Elegir valores para los REGISTROS para dibujar un cuadrado.
         x0 = posición de la esquina superior izquierda en x (1 = 1pixel)
 		x1 = posición de la esquina superior izquierda en y
@@ -95,6 +143,51 @@ loop_cuadrado2:
 	ldur x0, [sp, #24] // recupero el valor de x0
 	ldur lr, [sp, #32] // recupero la dirección de retorno
 	add  sp, sp, #40   // devuelvo la memoria pedida
+	br   lr
+
+/*
+    Elegir valores para los REGISTROS para dibujar un cuadrado que se mueve con un offset.
+        x0 = posición de la esquina superior izquierda en x (1 = 1pixel)
+		x1 = posición de la esquina superior izquierda en y
+        x2 = Largo de la cara del cuadrado 'tamano'
+        x3 = Color
+		x4 = Offset x
+*/
+CuadradoX:
+	sub  sp, sp, #48   // pido memoria en el stack para la dirección de retorno y los parámetros
+	stur lr, [sp, #40] // guardo la dirección de retorno en el stack
+	stur x0, [sp, #32] // guardo el valor de x0 en el stack
+	stur x1, [sp, #24] // guardo el valor de x1 en el stack
+	stur x2, [sp, #16] // guardo el valor de x2 en el stack
+	stur x3, [sp, #8]  // guardo el valor de x3 en el stack
+	stur x4, [sp, #0]  // guardo el valor de x4 en el stack
+
+	add x0, x0, x4 // le sumo el offset al origen
+
+	mov x7, x0 // Copia la coordenada x de la esquina superior derecha del cuadrado
+	mov x5, x2 // Indico el largo del cuadrado
+
+loop_cuadradoX1:
+	mov x6, x2   // Indico el ancho del cuadrado
+	mov x0, x7   // Devuelve el valor de x0
+	BL  Pantalla // calcula donde comenzar a colorear la primera línea
+
+loop_cuadradoX2:
+	stur w3, [x0]            // Colorea la pantalla
+	add  x0, x0, #4          // Me muevo al siguiente pixel hacia la derecha
+	sub  x6, x6, #1          // Decrementar contador del ancho
+	cbnz x6, loop_cuadradoX2 // Si no terminó la fila, salto
+	add  x1, x1, #1          // Me posiciono en la siguiente fila
+	sub  x5, x5, #1          // Decrementar contador del largo
+	cbnz x5, loop_cuadradoX1 // Si no es la última fila, salto
+
+	ldur x4, [sp, #0]  // recupero el valor de x4
+	ldur x3, [sp, #8]  // recupero el valor de x3
+	ldur x2, [sp, #16] // recupero el valor de x2
+	ldur x1, [sp, #24] // recupero el valor de x1
+	ldur x0, [sp, #32] // recupero el valor de x0
+	ldur lr, [sp, #40] // recupero la dirección de retorno
+	add  sp, sp, #48   // devuelvo la memoria pedida
 	br   lr
 
 /*

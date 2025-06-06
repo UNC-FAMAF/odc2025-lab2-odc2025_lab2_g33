@@ -5,191 +5,20 @@
 // Figuras
 Fondo:
 
-	sub  sp, sp, #48   // pido memoria en el stack para la dirección de retorno y los parámetros
-	stur lr, [sp, #40] // guardo la dirección de retorno en el stack
-	stur x0, [sp, #32] // guardo el valor de x0 en el stack
-	stur x1, [sp, #24] // guardo el valor de x1 en el stack
-	stur x2, [sp, #16] // guardo el valor de x2 en el stack
-	stur x3, [sp, #8]  // guardo el valor de x3 en el stack
-	stur x4, [sp, #0]  // guardo el valor de x4 en el stack
+	sub  sp, sp, #56   // pido memoria en el stack para la dirección de retorno y los parámetros
+	stur lr, [sp, #48] // guardo la dirección de retorno en el stack
+	stur x0, [sp, #40] // guardo el valor de x0 en el stack
+	stur x1, [sp, #32] // guardo el valor de x1 en el stack
+	stur x2, [sp, #24] // guardo el valor de x2 en el stack
+	stur x3, [sp, #16] // guardo el valor de x3 en el stack
+	stur x4, [sp, #8]  // guardo el valor de x4 en el stack
+	stur x5, [sp, #0]  // guardo el valor de x4 en el stack
 
 	mov x0, 0
 	mov x1, 0
 	mov x2, SCREEN_WIDTH
 	mov x3, 0xCCCC
 	bl  Cuadrado
-
-	// Pajaors
-	mov x0, 430
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 427
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 420
-	mov x1, 100
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 410
-	mov x1, 110
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 400
-	mov x1, 100
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 395
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 390
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 380
-	mov x1, 120
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 370
-	mov x1, 120
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 360
-	mov x1, 130
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 350
-	mov x1, 120
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 345
-	mov x1, 120
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 340
-	mov x1, 120
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 340
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 330
-	mov x1, 100
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 320
-	mov x1, 110
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 310
-	mov x1, 100
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 305
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 300
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	// montana
-	mov x0, 110
-	mov x1, 120
-	mov x2, 40
-	mov x3, 100
-	mov x4, 0xFFFFFF
-	bl  Rectangulo
-
-	mov  x0, 80
-	mov  x1, 150
-	mov  x2, 100
-	mov  x3, 100
-	movz x4, 0x001C83AF & 0xFFFF, lsl 0
-	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 30
-	mov  x1, 200
-	mov  x2, 200
-	mov  x3, 100
-	movz x4, 0x001C83AF & 0xFFFF, lsl 0
-	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 0
-	mov  x1, 300
-	mov  x2, 300
-	mov  x3, 100
-	movz x4, 0x001C83AF & 0xFFFF, lsl 0
-	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	// Figura: piso
-	mov  x0, 0
-	mov  x1, 400
-	mov  x2, 640
-	mov  x3, 80
-	movz x4, 0x0007DE00 & 0xFFFF, lsl 0
-	movk x4, (0x0007DE00 >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 0
-	mov  x1, 430
-	mov  x2, 640
-	mov  x3, 40
-	movz x4, 0x00AF8D1C & 0xFFFF, lsl 0
-	movk x4, (0x00AF8D1C >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 0
-	mov  x1, 450
-	mov  x2, 640
-	mov  x3, 40
-	movz x4, 0x00AF6F1C & 0xFFFF, lsl 0
-	movk x4, (0x00AF6F1C >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
 
 	// Figura: Sol
 	// rayo medio abajo
@@ -371,23 +200,212 @@ Fondo:
 	mov x3, 0x00FFFF00
 	bl  Circulo
 
-	ldur x4, [sp, #0]  // recupero el valor de x4
-	ldur x3, [sp, #8]  // recupero el valor de x3
-	ldur x2, [sp, #16] // recupero el valor de x2
-	ldur x1, [sp, #24] // recupero el valor de x1
-	ldur x0, [sp, #32] // recupero el valor de x0
-	ldur lr, [sp, #40] // recupero la dirección de retorno
-	add  sp, sp, #48   // devuelvo la memoria pedida
-	br   lr
+	// Pajaros
+	mov x0, 430
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
 
-ActualizarFondoOffset:
-	add  x23, x23, #2
-	cmp  x23, x21
-	b.eq ResetFondoOffset // comparar offset con el tamaño de pantalla
-	br   lr
+	mov x0, 427
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
 
-ResetFondoOffset:
-	mov x23, #0
-	br  lr
+	mov x0, 420
+	mov x1, 100
+	mov x2, 10
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 410
+	mov x1, 110
+	mov x2, 10
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 400
+	mov x1, 100
+	mov x2, 10
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 395
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 390
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 380
+	mov x1, 120
+	mov x2, 5
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 370
+	mov x1, 120
+	mov x2, 10
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 360
+	mov x1, 130
+	mov x2, 10
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 350
+	mov x1, 120
+	mov x2, 10
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 345
+	mov x1, 120
+	mov x2, 5
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 340
+	mov x1, 120
+	mov x2, 5
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 340
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 330
+	mov x1, 100
+	mov x2, 10
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 320
+	mov x1, 110
+	mov x2, 10
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 310
+	mov x1, 100
+	mov x2, 10
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 305
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	mov x0, 300
+	mov x1, 100
+	mov x2, 5
+	mov x3, 0x000000
+	mov x4, x24
+	bl  CuadradoX
+
+	// montana
+	mov x0, 110
+	mov x1, 120
+	mov x2, 40
+	mov x3, 100
+	mov x4, 0xFFFFFF
+	mov x5, x23
+	bl  RectanguloX
+
+	mov  x0, 80
+	mov  x1, 150
+	mov  x2, 100
+	mov  x3, 100
+	movz x4, 0x001C83AF & 0xFFFF, lsl 0
+	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
+	mov  x5, x23
+	bl   RectanguloX
+
+	mov  x0, 30
+	mov  x1, 200
+	mov  x2, 200
+	mov  x3, 100
+	movz x4, 0x001C83AF & 0xFFFF, lsl 0
+	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
+	mov  x5, x23
+	bl   RectanguloX
+
+	mov  x0, 0
+	mov  x1, 300
+	mov  x2, 300
+	mov  x3, 100
+	movz x4, 0x001C83AF & 0xFFFF, lsl 0
+	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
+	mov  x5, x23
+	bl   RectanguloX
+
+	// Figura: piso
+	mov  x0, 0
+	mov  x1, 400
+	mov  x2, 640
+	mov  x3, 80
+	movz x4, 0x0007DE00 & 0xFFFF, lsl 0
+	movk x4, (0x0007DE00 >> 16) & 0xFFFF, lsl 16
+	mov  x5, x23
+	bl   RectanguloX
+
+	mov  x0, 0
+	mov  x1, 430
+	mov  x2, 640
+	mov  x3, 40
+	movz x4, 0x00AF8D1C & 0xFFFF, lsl 0
+	movk x4, (0x00AF8D1C >> 16) & 0xFFFF, lsl 16
+	mov  x5, x23
+	bl   RectanguloX
+
+	mov  x0, 0
+	mov  x1, 450
+	mov  x2, 640
+	mov  x3, 40
+	movz x4, 0x00AF6F1C & 0xFFFF, lsl 0
+	movk x4, (0x00AF6F1C >> 16) & 0xFFFF, lsl 16
+	mov  x5, x23
+	bl   RectanguloX
+
+	ldur x5, [sp, #0]  // recupero el valor de x5
+	ldur x4, [sp, #8]  // recupero el valor de x4
+	ldur x3, [sp, #16] // recupero el valor de x3
+	ldur x2, [sp, #24] // recupero el valor de x2
+	ldur x1, [sp, #32] // recupero el valor de x1
+	ldur x0, [sp, #40] // recupero el valor de x0
+	ldur lr, [sp, #48] // recupero la dirección de retorno
+	add  sp, sp, #56   // devuelvo la memoria pedida
+	br   lr
 
 	.endif
