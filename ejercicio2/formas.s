@@ -57,6 +57,54 @@ loop_rectangulo2:
 	br   lr
 
 /*
+    Dibuja un rectángulo en la pantalla.
+    Parámetros:
+        x0 = posición de la esquina superior izquierda en x
+	x1 = posición de la esquina superior izquierda en y
+	x2 = ancho del rectángulo (→)
+        x3 = largo del rectángulo (↓)
+        x4 = color del rectángulo
+		x5 = offset x
+*/
+RectanguloX:
+	sub  sp, sp, #56   // pido memoria en el stack para la dirección de retorno y los parámetros
+	stur lr, [sp, #48] // guardo la dirección de retorno en el stack
+	stur x0, [sp, #40] // guardo el valor de x0 en el stack
+	stur x1, [sp, #32] // guardo el valor de x1 en el stack
+	stur x2, [sp, #24] // guardo el valor de x2 en el stack
+	stur x3, [sp, #16] // guardo el valor de x3 en el stack
+	stur x4, [sp, #8]  // guardo el valor de x4 en el stack
+	stur x5, [sp, #0]  // guardo el valor de x5 en el stack
+
+	add x0, x0, x5
+
+	mov x8, x0 // Copia la coordenada x de la esquina superior izquierda del rectángulo
+	mov x6, x3 // Indico el largo del rectángulo
+
+loop_rectanguloX1:
+	mov x7, x2   // Indico el ancho del rectángulo
+	mov x0, x8   // Devuelve el valor de x0
+	BL  Pantalla // calcula donde comenzar a colorear la primera línea
+
+loop_rectanguloX2:
+	stur w4, [x0]              // Colorea la pantalla
+	add  x0, x0, #4            // Me muevo al siguiente pixel hacia la derecha
+	sub  x7, x7, #1            // Decrementar contador del ancho
+	cbnz x7, loop_rectanguloX2 // Si no terminó la fila, salto
+	add  x1, x1, #1            // Me posiciono en la siguiente fila
+	sub  x6, x6, #1            // Decrementar contador del largo
+	cbnz x6, loop_rectanguloX1 // Si no es la última fila, salto
+
+	ldur x5, [sp, #0]  // recupero el valor de x5
+	ldur x4, [sp, #8]  // recupero el valor de x4
+	ldur x3, [sp, #16] // recupero el valor de x3
+	ldur x2, [sp, #24] // recupero el valor de x2
+	ldur x1, [sp, #32] // recupero el valor de x1
+	ldur x0, [sp, #40] // recupero el valor de x0
+	ldur lr, [sp, #48] // recupero la dirección de retorno
+	add  sp, sp, #56   // devuelvo la memoria pedida
+	br   lr
+/*
     Elegir valores para los REGISTROS para dibujar un cuadrado.
         x0 = posición de la esquina superior izquierda en x (1 = 1pixel)
 		x1 = posición de la esquina superior izquierda en y
@@ -95,6 +143,51 @@ loop_cuadrado2:
 	ldur x0, [sp, #24] // recupero el valor de x0
 	ldur lr, [sp, #32] // recupero la dirección de retorno
 	add  sp, sp, #40   // devuelvo la memoria pedida
+	br   lr
+
+/*
+    Elegir valores para los REGISTROS para dibujar un cuadrado que se mueve con un offset.
+        x0 = posición de la esquina superior izquierda en x (1 = 1pixel)
+		x1 = posición de la esquina superior izquierda en y
+        x2 = Largo de la cara del cuadrado 'tamano'
+        x3 = Color
+		x4 = Offset x
+*/
+CuadradoX:
+	sub  sp, sp, #48   // pido memoria en el stack para la dirección de retorno y los parámetros
+	stur lr, [sp, #40] // guardo la dirección de retorno en el stack
+	stur x0, [sp, #32] // guardo el valor de x0 en el stack
+	stur x1, [sp, #24] // guardo el valor de x1 en el stack
+	stur x2, [sp, #16] // guardo el valor de x2 en el stack
+	stur x3, [sp, #8]  // guardo el valor de x3 en el stack
+	stur x4, [sp, #0]  // guardo el valor de x4 en el stack
+
+	add x0, x0, x4 // le sumo el offset al origen
+
+	mov x7, x0 // Copia la coordenada x de la esquina superior derecha del cuadrado
+	mov x5, x2 // Indico el largo del cuadrado
+
+loop_cuadradoX1:
+	mov x6, x2   // Indico el ancho del cuadrado
+	mov x0, x7   // Devuelve el valor de x0
+	BL  Pantalla // calcula donde comenzar a colorear la primera línea
+
+loop_cuadradoX2:
+	stur w3, [x0]            // Colorea la pantalla
+	add  x0, x0, #4          // Me muevo al siguiente pixel hacia la derecha
+	sub  x6, x6, #1          // Decrementar contador del ancho
+	cbnz x6, loop_cuadradoX2 // Si no terminó la fila, salto
+	add  x1, x1, #1          // Me posiciono en la siguiente fila
+	sub  x5, x5, #1          // Decrementar contador del largo
+	cbnz x5, loop_cuadradoX1 // Si no es la última fila, salto
+
+	ldur x4, [sp, #0]  // recupero el valor de x4
+	ldur x3, [sp, #8]  // recupero el valor de x3
+	ldur x2, [sp, #16] // recupero el valor de x2
+	ldur x1, [sp, #24] // recupero el valor de x1
+	ldur x0, [sp, #32] // recupero el valor de x0
+	ldur lr, [sp, #40] // recupero la dirección de retorno
+	add  sp, sp, #48   // devuelvo la memoria pedida
 	br   lr
 
 /*
@@ -159,383 +252,5 @@ loop_circulo2:
 	sub  x7, x7, 1
 	cbz  x7, circulo_mov_y
 	b    loop_circulo1
-
-	// Figuras
-Fondo:
-
-	sub  sp, sp, #48   // pido memoria en el stack para la dirección de retorno y los parámetros
-	stur lr, [sp, #40] // guardo la dirección de retorno en el stack
-	stur x0, [sp, #32] // guardo el valor de x0 en el stack
-	stur x1, [sp, #24] // guardo el valor de x1 en el stack
-	stur x2, [sp, #16] // guardo el valor de x2 en el stack
-	stur x3, [sp, #8]  // guardo el valor de x3 en el stack
-	stur x4, [sp, #0]  // guardo el valor de x4 en el stack
-
-	mov x0, 0
-	mov x1, 0
-	mov x2, SCREEN_WIDTH
-	mov x3, 0xCCCC
-	bl  Cuadrado
-
-	// Pajaors
-	mov x0, 430
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 427
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 420
-	mov x1, 100
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 410
-	mov x1, 110
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 400
-	mov x1, 100
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 395
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 390
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 380
-	mov x1, 120
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 370
-	mov x1, 120
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 360
-	mov x1, 130
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 350
-	mov x1, 120
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 345
-	mov x1, 120
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 340
-	mov x1, 120
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 340
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 330
-	mov x1, 100
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 320
-	mov x1, 110
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 310
-	mov x1, 100
-	mov x2, 10
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 305
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	mov x0, 300
-	mov x1, 100
-	mov x2, 5
-	mov x3, 0x000000
-	bl  Cuadrado
-
-	// montana
-	mov x0, 110
-	mov x1, 120
-	mov x2, 40
-	mov x3, 100
-	mov x4, 0xFFFFFF
-	bl  Rectangulo
-
-	mov  x0, 80
-	mov  x1, 150
-	mov  x2, 100
-	mov  x3, 100
-	movz x4, 0x001C83AF & 0xFFFF, lsl 0
-	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 30
-	mov  x1, 200
-	mov  x2, 200
-	mov  x3, 100
-	movz x4, 0x001C83AF & 0xFFFF, lsl 0
-	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 0
-	mov  x1, 300
-	mov  x2, 300
-	mov  x3, 100
-	movz x4, 0x001C83AF & 0xFFFF, lsl 0
-	movk x4, (0x001C83AF >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	// Figura: piso
-	mov  x0, 0
-	mov  x1, 400
-	mov  x2, 640
-	mov  x3, 80
-	movz x4, 0x0007DE00 & 0xFFFF, lsl 0
-	movk x4, (0x0007DE00 >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 0
-	mov  x1, 430
-	mov  x2, 640
-	mov  x3, 40
-	movz x4, 0x00AF8D1C & 0xFFFF, lsl 0
-	movk x4, (0x00AF8D1C >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 0
-	mov  x1, 450
-	mov  x2, 640
-	mov  x3, 40
-	movz x4, 0x00AF6F1C & 0xFFFF, lsl 0
-	movk x4, (0x00AF6F1C >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	// Figura: Sol
-	// rayo medio abajo
-	mov  x0, 565
-	mov  x1, 155
-	mov  x2, 10
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 560
-	mov  x1, 155
-	mov  x2, 10
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 540
-	mov  x1, 140
-	mov  x2, 20
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 540
-	mov  x1, 145
-	mov  x2, 20
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	// rayo medio arriba
-	mov  x0, 550
-	mov  x1, 10
-	mov  x2, 10
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 560
-	mov  x1, 10
-	mov  x2, 10
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 540
-	mov  x1, 20
-	mov  x2, 15
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 540
-	mov  x1, 10
-	mov  x2, 15
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	// rayo abajo derecha
-	mov  x0, 615
-	mov  x1, 105
-	mov  x2, 5
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 605
-	mov  x1, 105
-	mov  x2, 10
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 600
-	mov  x1, 115
-	mov  x2, 15
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 580
-	mov  x1, 115
-	mov  x2, 15
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 590
-	mov  x1, 115
-	mov  x2, 15
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	// rayo abajo izquierda
-	mov  x0, 485
-	mov  x1, 125
-	mov  x2, 10
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 485
-	mov  x1, 110
-	mov  x2, 15
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	mov  x0, 495
-	mov  x1, 110
-	mov  x2, 15
-	movz x3, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x3, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Cuadrado
-
-	// rayo arriba derecha
-	mov  x0, 485
-	mov  x1, 27
-	mov  x2, 5
-	mov  x3, 15
-	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 485
-	mov  x1, 38
-	mov  x2, 22
-	mov  x3, 7
-	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 498
-	mov  x1, 40
-	mov  x2, 10
-	mov  x3, 30
-	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	// rayo arriba izquierda
-	mov  x0, 605
-	mov  x1, 30
-	mov  x2, 5
-	mov  x3, 10
-	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 600
-	mov  x1, 40
-	mov  x2, 10
-	mov  x3, 7
-	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 590
-	mov  x1, 40
-	mov  x2, 10
-	mov  x3, 20
-	movz x4, 0x00FF7700 & 0xFFFF, lsl 0
-	movk x4, (0x00FF7700 >> 16) & 0xFFFF, lsl 16
-	bl   Rectangulo
-
-	mov  x0, 550
-	mov  x1, 85
-	mov  x2, 55
-	movz x3, 0x00FF9A00 & 0xFFFF, lsl 0
-	movk x3, (0x00FF9A00 >> 16) & 0xFFFF, lsl 16
-	bl   Circulo
-
-	mov x0, 550
-	mov x1, 85
-	mov x2, 50
-	mov x3, 0x00FFFF00
-	bl  Circulo
-
-	ldur x4, [sp, #0]  // recupero el valor de x4
-	ldur x3, [sp, #8]  // recupero el valor de x3
-	ldur x2, [sp, #16] // recupero el valor de x2
-	ldur x1, [sp, #24] // recupero el valor de x1
-	ldur x0, [sp, #32] // recupero el valor de x0
-	ldur lr, [sp, #40] // recupero la dirección de retorno
-	add  sp, sp, #48   // devuelvo la memoria pedida
-	br   lr
 
 	.endif

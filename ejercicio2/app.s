@@ -8,8 +8,13 @@ main:
 	mov x20, x0           // Guarda la dirección base-inicio del framebuffer en x20
 	mov x21, SCREEN_WIDTH
 	mov x22, SCREEN_HEIGH
+	mov x23, 0            // Offset para el fondo
 
 StartFrameLoop:
+
+	sub x23, x23, #1
+	sub x24, x24, #3
+	sub x25, x25, #30
 
 	// frame1
 	bl Fondo
@@ -52,7 +57,7 @@ StartFrameLoop:
 InfLoop:
 	b InfLoop
 
-	.include "formas.s"
+	.include "fondo.s"
 	.include "delay.s"
 	.include "sonic.s"
 	.include "frame_1.s"
