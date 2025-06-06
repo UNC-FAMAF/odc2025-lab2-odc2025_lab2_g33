@@ -1,4 +1,4 @@
-.ifndef frame_1_s
+.ifndef frame_4_s
 
 .include "formas.s"
 
@@ -20,297 +20,314 @@
 .equ ROJO_4, 0x00590000
 
 Sonic_Frame_4:
-  mov x2, 25
-	mov x3, 5
-	mov x0, 230
-	mov x1, 240
- 	movz x4, AZUL_2 & 0xFFFF, lsl 0
- 	movk x4, (AZUL_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	sub  sp, sp, #48   // pido memoria en el stack para la dirección de retorno y los parámetros
+	stur lr, [sp, #40] // guardo la dirección de retorno en el stack
+	stur x0, [sp, #32] // guardo el valor de x0 en el stack
+	stur x1, [sp, #24] // guardo el valor de x1 en el stack
+	stur x2, [sp, #16] // guardo el valor de x2 en el stack
+	stur x3, [sp, #8]  // guardo el valor de x3 en el stack
+	stur x4, [sp, #0]  // guardo el valor de x4 en el stack
 
-  mov x2, 5
-	mov x3, 20
-	mov x0, 305
-	mov x1, 250
- 	movz x4, AZUL_1 & 0xFFFF, lsl 0
- 	movk x4, (AZUL_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 25
+	mov  x3, 5
+	mov  x0, 230
+	mov  x1, 240
+	movz x4, AZUL_2 & 0xFFFF, lsl 0
+	movk x4, (AZUL_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 5
-	mov x3, 10
-	mov x0, 300
-	mov x1, 255
- 	movz x4, AZUL_1 & 0xFFFF, lsl 0
- 	movk x4, (AZUL_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 5
+	mov  x3, 20
+	mov  x0, 305
+	mov  x1, 250
+	movz x4, AZUL_1 & 0xFFFF, lsl 0
+	movk x4, (AZUL_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 20
-	mov x3, 15
-	mov x0, 185
-	mov x1, 325
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 5
+	mov  x3, 10
+	mov  x0, 300
+	mov  x1, 255
+	movz x4, AZUL_1 & 0xFFFF, lsl 0
+	movk x4, (AZUL_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 20
-	mov x3, 15
-	mov x0, 175
-	mov x1, 330
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 20
+	mov  x3, 15
+	mov  x0, 185
+	mov  x1, 325
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 15
-	mov x3, 15
-	mov x0, 170
-	mov x1, 335
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 20
+	mov  x3, 15
+	mov  x0, 175
+	mov  x1, 330
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 15
-	mov x3, 15
+	mov  x2, 15
+	mov  x3, 15
+	mov  x0, 170
+	mov  x1, 335
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 15
+	mov  x3, 15
+	mov  x0, 165
+	mov  x1, 340
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 15
+	mov  x3, 20
+	mov  x0, 160
+	mov  x1, 345
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 15
+	mov  x3, 20
+	mov  x0, 155
+	mov  x1, 360
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 10
+	mov  x3, 5
+	mov  x0, 155
+	mov  x1, 380
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 5
+	mov  x3, 15
+	mov  x0, 160
+	mov  x1, 380
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
 	mov x0, 165
-	mov x1, 340
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 15
-	mov x3, 20
-	mov x0, 160
-	mov x1, 345
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-  
-  mov x2, 15
-	mov x3, 20
-	mov x0, 155
-	mov x1, 360
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 10
-	mov x3, 5
-	mov x0, 155
-	mov x1, 380
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 5
-	mov x3, 15
-	mov x0, 160
-	mov x1, 380
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x0, 165
 	mov x1, 395
 	mov x2, 5
 	mov x3, ROJO_2
-	bl Cuadrado
+	bl  Cuadrado
 
-  mov x2, 20
-	mov x3, 5
-	mov x0, 210
-	mov x1, 370
- 	movz x4, ANIL_1 & 0xFFFF, lsl 0
- 	movk x4, (ANIL_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 20
+	mov  x3, 5
+	mov  x0, 210
+	mov  x1, 370
+	movz x4, ANIL_1 & 0xFFFF, lsl 0
+	movk x4, (ANIL_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 10
-	mov x3, 15
-	mov x0, 210
-	mov x1, 375
- 	movz x4, ANIL_1 & 0xFFFF, lsl 0
- 	movk x4, (ANIL_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 10
+	mov  x3, 15
+	mov  x0, 210
+	mov  x1, 375
+	movz x4, ANIL_1 & 0xFFFF, lsl 0
+	movk x4, (ANIL_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 15
-	mov x3, 5
-	mov x0, 200
-	mov x1, 390
- 	movz x4, ANIL_1 & 0xFFFF, lsl 0
- 	movk x4, (ANIL_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 15
+	mov  x3, 5
+	mov  x0, 200
+	mov  x1, 390
+	movz x4, ANIL_1 & 0xFFFF, lsl 0
+	movk x4, (ANIL_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 20
-	mov x3, 5
-	mov x0, 195
-	mov x1, 395
- 	movz x4, BLANCO & 0xFFFF, lsl 0
- 	movk x4, (BLANCO >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 20
+	mov  x3, 5
+	mov  x0, 195
+	mov  x1, 395
+	movz x4, BLANCO & 0xFFFF, lsl 0
+	movk x4, (BLANCO >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 25
-	mov x3, 5
-	mov x0, 195
-	mov x1, 400
- 	movz x4, GRIS_3 & 0xFFFF, lsl 0
- 	movk x4, (GRIS_3 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 25
+	mov  x3, 5
+	mov  x0, 195
+	mov  x1, 400
+	movz x4, GRIS_3 & 0xFFFF, lsl 0
+	movk x4, (GRIS_3 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 10
-	mov x3, 5
-	mov x0, 205
-	mov x1, 400
- 	movz x4, BLANCO & 0xFFFF, lsl 0
- 	movk x4, (BLANCO >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 10
+	mov  x3, 5
+	mov  x0, 205
+	mov  x1, 400
+	movz x4, BLANCO & 0xFFFF, lsl 0
+	movk x4, (BLANCO >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 25
-	mov x3, 5
-	mov x0, 190
-	mov x1, 405
- 	movz x4, GRIS_3 & 0xFFFF, lsl 0
- 	movk x4, (GRIS_3 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 25
+	mov  x3, 5
+	mov  x0, 190
+	mov  x1, 405
+	movz x4, GRIS_3 & 0xFFFF, lsl 0
+	movk x4, (GRIS_3 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 50
-	mov x3, 10
+	mov  x2, 50
+	mov  x3, 10
+	mov  x0, 185
+	mov  x1, 410
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 45
+	mov  x3, 10
+	mov  x0, 190
+	mov  x1, 415
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 20
+	mov  x3, 5
+	mov  x0, 235
+	mov  x1, 415
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 35
+	mov  x3, 10
+	mov  x0, 235
+	mov  x1, 405
+	movz x4, ROJO_1 & 0xFFFF, lsl 0
+	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 30
+	mov  x3, 10
+	mov  x0, 245
+	mov  x1, 400
+	movz x4, ROJO_1 & 0xFFFF, lsl 0
+	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 25
+	mov  x3, 10
+	mov  x0, 255
+	mov  x1, 395
+	movz x4, ROJO_1 & 0xFFFF, lsl 0
+	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 25
+	mov  x3, 10
+	mov  x0, 255
+	mov  x1, 395
+	movz x4, ROJO_1 & 0xFFFF, lsl 0
+	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 20
+	mov  x3, 5
+	mov  x0, 265
+	mov  x1, 390
+	movz x4, ROJO_1 & 0xFFFF, lsl 0
+	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 10
+	mov  x3, 5
+	mov  x0, 265
+	mov  x1, 385
+	movz x4, ROJO_1 & 0xFFFF, lsl 0
+	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 5
+	mov  x3, 15
+	mov  x0, 275
+	mov  x1, 375
+	movz x4, ROJO_1 & 0xFFFF, lsl 0
+	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 5
+	mov  x3, 25
+	mov  x0, 290
+	mov  x1, 360
+	movz x4, ROJO_1 & 0xFFFF, lsl 0
+	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 5
+	mov  x3, 15
+	mov  x0, 285
+	mov  x1, 375
+	movz x4, ROJO_1 & 0xFFFF, lsl 0
+	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 5
+	mov  x3, 15
+	mov  x0, 280
+	mov  x1, 385
+	movz x4, ROJO_1 & 0xFFFF, lsl 0
+	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
+	mov  x2, 45
+	mov  x3, 5
+	mov  x0, 190
+	mov  x1, 420
+	movz x4, ROJO_4 & 0xFFFF, lsl 0
+	movk x4, (ROJO_4 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
+
 	mov x0, 185
-	mov x1, 410
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 45
-	mov x3, 10
-	mov x0, 190
-	mov x1, 415
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 20
-	mov x3, 5
-	mov x0, 235
-	mov x1, 415
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 35
-	mov x3, 10
-	mov x0, 235
-	mov x1, 405
- 	movz x4, ROJO_1 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 30
-	mov x3, 10
-	mov x0, 245
-	mov x1, 400
- 	movz x4, ROJO_1 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 25
-	mov x3, 10
-	mov x0, 255
-	mov x1, 395
- 	movz x4, ROJO_1 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-  
-  mov x2, 25
-	mov x3, 10
-	mov x0, 255
-	mov x1, 395
- 	movz x4, ROJO_1 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 20
-	mov x3, 5
-	mov x0, 265
-	mov x1, 390
- 	movz x4, ROJO_1 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 10
-	mov x3, 5
-	mov x0, 265
-	mov x1, 385
- 	movz x4, ROJO_1 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 5
-	mov x3, 15
-	mov x0, 275
-	mov x1, 375
- 	movz x4, ROJO_1 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 5
-	mov x3, 25
-	mov x0, 290
-	mov x1, 360
- 	movz x4, ROJO_1 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 5
-	mov x3, 15
-	mov x0, 285
-	mov x1, 375
- 	movz x4, ROJO_1 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 5
-	mov x3, 15
-	mov x0, 280
-	mov x1, 385
- 	movz x4, ROJO_1 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_1 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x2, 45
-	mov x3, 5
-	mov x0, 190
-	mov x1, 420
- 	movz x4, ROJO_4 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_4 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
-
-  mov x0, 185
 	mov x1, 415
 	mov x2, 5
 	mov x3, ROJO_4
-	bl Cuadrado
+	bl  Cuadrado
 
-  mov x2, 10
-	mov x3, 5
-	mov x0, 210
-	mov x1, 415
- 	movz x4, GRIS_3 & 0xFFFF, lsl 0
- 	movk x4, (GRIS_3 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 10
+	mov  x3, 5
+	mov  x0, 210
+	mov  x1, 415
+	movz x4, GRIS_3 & 0xFFFF, lsl 0
+	movk x4, (GRIS_3 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 10
-	mov x3, 5
-	mov x0, 215
-	mov x1, 410
- 	movz x4, BLANCO & 0xFFFF, lsl 0
- 	movk x4, (BLANCO >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 10
+	mov  x3, 5
+	mov  x0, 215
+	mov  x1, 410
+	movz x4, BLANCO & 0xFFFF, lsl 0
+	movk x4, (BLANCO >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-  mov x2, 15
-	mov x3, 5
-	mov x0, 215
-	mov x1, 405
- 	movz x4, ROJO_2 & 0xFFFF, lsl 0
- 	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16 
-  bl Rectangulo
+	mov  x2, 15
+	mov  x3, 5
+	mov  x0, 215
+	mov  x1, 405
+	movz x4, ROJO_2 & 0xFFFF, lsl 0
+	movk x4, (ROJO_2 >> 16) & 0xFFFF, lsl 16
+	bl   Rectangulo
 
-.endif 
+	ldur x4, [sp, #0]  // recupero el valor de x4
+	ldur x3, [sp, #8]  // recupero el valor de x3
+	ldur x2, [sp, #16] // recupero el valor de x2
+	ldur x1, [sp, #24] // recupero el valor de x1
+	ldur x0, [sp, #32] // recupero el valor de x0
+	ldur lr, [sp, #40] // recupero la dirección de retorno
+	add  sp, sp, #48   // devuelvo la memoria pedida
+	br   lr
+
+	.endif
 
