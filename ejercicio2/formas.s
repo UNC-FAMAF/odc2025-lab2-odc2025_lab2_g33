@@ -20,13 +20,16 @@ Parámetros:
 	x4 = color del rectángulo
 */
 Rectangulo:
-	sub  sp, sp, #48   // pido memoria en el stack para la dirección de retorno y los parámetros
-	stur lr, [sp, #40] // guardo la dirección de retorno en el stack
-	stur x0, [sp, #32] // guardo el valor de x0 en el stack
-	stur x1, [sp, #24] // guardo el valor de x1 en el stack
-	stur x2, [sp, #16] // guardo el valor de x2 en el stack
-	stur x3, [sp, #8]  // guardo el valor de x3 en el stack
-	stur x4, [sp, #0]  // guardo el valor de x4 en el stack
+	sub  sp, sp, #72   // pido memoria en el stack para la dirección de retorno y los parámetros
+	stur lr, [sp, #64] // guardo la dirección de retorno en el stack
+	stur x0, [sp, #56] // guardo el valor de x0 en el stack
+	stur x1, [sp, #48] // guardo el valor de x1 en el stack
+	stur x2, [sp, #40] // guardo el valor de x2 en el stack
+	stur x3, [sp, #32] // guardo el valor de x3 en el stack
+	stur x4, [sp, #24] // guardo el valor de x4 en el stack
+	stur x5, [sp, #16] // guardo el valor de x5 en el stack
+	stur x6, [sp, #8]  // guardo el valor de x6 en el stack
+	stur x7, [sp, #0]  // guardo el valor de x7 en el stack
 
 	mov x7, x0 // Copia la coordenada x de la esquina superior derecha del rectángulo
 	mov x5, x3 // Indico el largo del rectángulo
@@ -45,13 +48,16 @@ loop_rectangulo2:
 	sub  x5, x5, #1           // Decrementar contador del largo
 	cbnz x5, loop_rectangulo1 // Si no es la última fila, salto
 
-	ldur x4, [sp, #0]  // recupero el valor de x4
-	ldur x3, [sp, #8]  // recupero el valor de x3
-	ldur x2, [sp, #16] // recupero el valor de x2
-	ldur x1, [sp, #24] // recupero el valor de x1
-	ldur x0, [sp, #32] // recupero el valor de x0
-	ldur lr, [sp, #40] // recupero la dirección de retorno
-	add  sp, sp, #48   // devuelvo la memoria pedida
+	ldur x7, [sp, #0]  // recupero el valor de x7
+	ldur x6, [sp, #8]  // recupero el valor de x6
+	ldur x5, [sp, #16] // recupero el valor de x5
+	ldur x4, [sp, #24] // recupero el valor de x4
+	ldur x3, [sp, #32] // recupero el valor de x3
+	ldur x2, [sp, #40] // recupero el valor de x2
+	ldur x1, [sp, #48] // recupero el valor de x1
+	ldur x0, [sp, #56] // recupero el valor de x0
+	ldur lr, [sp, #64] // recupero la dirección de retorno
+	add  sp, sp, #72   // devuelvo la memoria pedida
 	br   lr
 
 /*
